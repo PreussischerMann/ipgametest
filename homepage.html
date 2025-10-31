@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome to the Israel-Palestine Conflict Game!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+    <h1>Welcome to the Israeli-Palestinian Conflict Game</h1>
+    <audio src="fidai.mp3" autoplay loop></audio>
+    <div class="deccontainer">
+        <img id="israelflag" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Flag_of_Israel.svg/1100px-Flag_of_Israel.svg.png"></img>
+        <img id="palestineflag" src="https://yourflag.com.au/wp-content/uploads/palestine-national-flag.jpg"></img>
+        <button id="playbtn" onmouseover="pbomo()" onmouseout="pbomt()" onclick="pbc()">PLAY NOW</button>
+    </div>
+</body>
+<style>
+    body{
+        background-color: skyblue;
+    }
+    h1{
+        text-align: center;
+        width: 700px;
+    }
+
+    .deccontainer{
+        background: linear-gradient(45deg, blue, green);
+        background-repeat: no-repeat;
+        width: 600px;
+        height: 100px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        transform-origin: top-left;
+        border-style: solid;
+        border-color: gold;
+        border-width: 5px;
+    }
+    #israelflag{
+        height: 100px;
+        width: 150px;
+    }
+    #palestineflag{
+        height: 100px;
+        width: 150px;
+        position: absolute;
+        right: 0px;
+    }
+    #playbtn{
+        background-color: red;
+        height: 100px;
+        width: 200px;
+        position: absolute;
+        left: 200px;
+        border-radius: 25px;
+        font-size: 30px;
+        font-family: cursive;
+    }
+</style>
+<script>
+    var playbtn = document.getElementById('playbtn');
+
+    function pbomo(){
+        playbtn.style.backgroundColor = 'darkred';
+        playbtn.style.color = 'white';
+        playbtn.style.borderRadius = '100%';
+    }
+
+    function pbomt(){
+        playbtn.style.backgroundColor = 'red';
+        playbtn.style.color = 'black';
+        playbtn.style.borderRadius = '25px';
+    }
+
+    function pbc(){
+        window.location = 'gamescreen.html';
+    }
+</script>
+</html>

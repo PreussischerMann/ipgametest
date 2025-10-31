@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPC Game</title>
+</head>
+<body>
+    <audio src="Fidai_8bit.mp3" autoplay loop muted></audio>
+    <h1>yes</h1>
+    <div id="provcont">
+        <div class="israel" id="golan" title="Golan"></div>
+        <div class="israel" id="galilee" title="Galilee"></div>
+        <div class="israel" id="haifa" title="Haifa"></div>
+        <div class="israel" id="gushdan" title="Gush Dan"></div>
+        <div class="israel" id="kiryatgat" title="Kiryat Gat"></div>
+        <div class="israel" id="wjerusalem" title="West Jerusalem (capital)"></div>
+        <div class="israel" id="beersheva" title="Beersheva"></div>
+        <div class="israel" id="negev" title="Negev"></div>
+        <div class="israel" id="eilat" title="Eilat"></div>
+
+        <div class="palestine" id="nablus" title="Nablus"></div>
+        <div class="palestine" id="ramallah" title="Ramallah"></div>
+        <div class="palestine" id="ejerusalem" title="East Jerusalem (capital)" onclick="govern()"></div>
+        <div class="palestine" id="hebron" title="Hebron"></div>
+        <div class="palestine" id="gaza" title="Gaza"></div>
+    </div>
+    <div class="govern">
+        <label for="taxrate" id="labTaxrate">Tax Rate:</label>
+        <select name="taxrate" id="selTaxrate">
+            <option value="high">High</option>
+            <option value="mid">Mid</option>
+            <option value="low">Low</option>
+        </select>
+        <div id="shekelicon">
+            <p id="shekellogo">ש״ח</p>
+        </div>
+        <p id="shekelamt"></p>
+        <div id="hlicon"></div>
+        <p id="hlamt">%</p>
+        <button id="governsub" onclick="governex()">Submit and Exit</button>
+    </div>
+</body>
+<style>
+    body{
+        background: black;
+        display: flex;
+        justify-content: center;
+    }
+    h1{
+        color: white;
+    }
+    .govern{
+        background-color: white;
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        animation: none;
+        font-size: 24px;
+    }
+    #hlicon{
+        background-color: gold;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        position: absolute;
+        top: 85px;
+        left: 7px;
+    }
+    #hlamt{
+        position: absolute;
+        top: 55px;
+        left: 60px;
+        font-size: 30px;
+        font-family: cursive;
+    }
+    #shekelicon{
+        background-color: gold;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        color: lightyellow;
+        font-size: 20px;
+        font-family: arial;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-width: 3px;
+        border-style: solid;
+        border-color: lightyellow;
+
+    }
+    #shekellogo{
+        margin: 0px;
+    }
+    #shekelamt{
+        position: absolute;
+        top: -10px;
+        left: 60px;
+        font-size: 20px;
+        font-family: cursive;
+    }
+    #governsub{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        height: 30px;
+    }
+    #selTaxrate{
+        height: 30px;
+        transform-origin: left;
+        width: 100px;
+        text-align: center;
+        font-size: 20px;
+        position: absolute;
+        top: 50px;
+        right: 0px;
+    }
+    #labTaxrate{
+        position: absolute;
+        top: 50px;
+    }
+    @keyframes governslide{
+        0%{
+            left: -200px;
+        }
+        100%{
+            left: 0px;
+        }
+    }
+    @keyframes governexit{
+        0%{
+            left: 0px;
+        }
+        100%{
+            left: -200px;
+        }
+    }
+    #provcont{
+        background: transparent;
+        width: 215px;
+        height: 625px;
+        position: relative;
+        top: 40px;
+        transform-origin:right;
+    }
+    .israel{
+        background-color: blue;
+        position: absolute;
+    }
+    .israel:hover{
+        background: radial-gradient(circle at center, blue, skyblue);
+    }
+
+    .palestine{
+        background-color: green;
+        position: absolute;
+    }
+    .palestine:hover{
+        background: radial-gradient(circle at center, green, lightgreen);
+    }
+
+    #golan{
+        width: 40px;
+        height: 150px;
+        top: -20px;
+        right: 0px;
+        transform-origin: bottom;
+    }
+    #galilee{
+        width: 100px;
+        height: 200px;
+        top: 20px;
+        right: 40px;
+    }
+    #haifa{
+        width: 50px;
+        height: 100px;
+        top: 80px;
+        left: 25px;
+        transform-origin: top;
+    }
+    #gushdan{
+        width: 75px;
+        height: 200px;
+        left: 0px;
+        top: 180px;
+        transform-origin: top;
+    }
+    #kiryatgat{
+        width: 50px;
+        height: 60px;
+        top: 380px;
+        left: 25px;
+        transform-origin: right;
+    }
+    #wjerusalem{
+        width: 50px;
+        height: 50px;
+        top: 330px;
+        left: 75px;
+    }
+    #beersheva{
+        width: 175px;
+        height: 80px;
+        top: 440px;
+        left: 0px;
+    }
+    #negev{
+        width: 150px;
+        height: 80px;
+        top: 520px;
+        right: 40px;
+        transform-origin: right;
+    }
+    #eilat{
+        width: 75px;
+        height: 60px;
+        top: 600px;
+        right: 40px;
+        transform-origin: right;
+    }
+
+    #nablus{
+        width: 100px;
+        height: 50px;
+        top: 220px;
+        right: 40px;
+    }
+    #ramallah{
+        width: 100px;
+        height: 60px;
+        top: 270px;
+        right: 40px;
+        transform-origin: top;
+    }
+    #ejerusalem{
+        width: 50px;
+        height: 50px;
+        top: 330px;
+        right: 40px;
+    }
+    #hebron{
+        width: 100px;
+        height: 60px;
+        top: 380px;
+        right: 40px;
+    }
+    #gaza{
+        width: 25px;
+        height: 60px;
+        top: 380px;
+        left: 0px;
+    }
+</style>
+<script>
+    var fidai = new Audio("Fidai_8bit.mp3");
+    var hatikvah = new Audio("Hatikvah_8bit (1).mp3");
+    var governopt = document.querySelector('.govern');
+    var selTaxrate = document.getElementById('selTaxrate');
+    var governsub = document.getElementById('governsub');
+
+    let songs = [fidai, hatikvah];
+
+    let songnum = 0;
+    selTaxrate.value = "mid";
+
+    songs[songnum].play()
+
+    songs[songnum].onended = function(){
+        songnum += 1;
+        songs[songnum].play()
+        if(songnum > songs.length){
+            songnum == 0;
+        }
+    }
+
+    function govern(){
+        governopt.style.animation = "governslide 1s linear forwards"
+    }
+    function governex(){
+        governopt.style.animation = "governexit 1s linear forwards";
+    }
+</script>
+<script src="pltax.js"></script>
+</html>
